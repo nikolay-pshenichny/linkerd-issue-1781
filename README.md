@@ -19,7 +19,7 @@ Start the `./repro.sh` script and it will:
 
  ### What will happen?
 
-There are 128 inotify instances awailable in the box (`sysctl fs.inotify`), Linkerd will aquire one of them and will try to add a watch for the `discovery` folder.
+There are 128 inotify instances available in the box (`sysctl fs.inotify`), Linkerd will aquire one of them and will try to add a watch for the `discovery` folder.
 The latter will fail and Linkerd will aquire a new inotify instance and will try to add a watch to it. That loop will continue indefinitely.
 The error messages will change from "User limit of inotify watches reached" to "User limit of inotify instances reached or too many open files" when the system will be out of inotify instances.
 
