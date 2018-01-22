@@ -1,0 +1,23 @@
+admin:
+  ip: 0.0.0.0
+  port: 1234
+
+routers:
+  - protocol: http
+    label: out_route
+    servers:
+      - port: 1235
+        ip: 0.0.0.0
+
+    originator: true
+    dtab: |
+      # Look up the address via standard DNS.
+      /fs# => /#/io.l5d.fs ;
+      /svc => /fs# ;
+
+namers:
+  - kind: io.l5d.fs
+    rootDir: /home/vagrant/discovery
+
+usage:
+  enabled: false
